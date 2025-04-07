@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OralAI - Oral Health Analysis</title>
+  <style>
+    /* Enhanced OralAI Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+    }
+    
+    body {
+      background-color: #f2f7f9;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    /* Layout and containers */
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .sidebar {
+      flex: 1;
+      min-width: 300px;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(65, 105, 225, 0.1);
+    }
+    
+    .main {
+      flex: 3;
+      min-width: 300px;
+    }
+    
+    /* Typography */
+    h1, h2, h3 {
+      color: #4169e1;
+      margin-bottom: 15px;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    
+    h2 {
+      font-size: 1.6rem;
+      border-bottom: 2px solid #e6eef8;
+      padding-bottom: 10px;
+    }
+    
+    h3 {
+      font-size: 1.3rem;
+    }
+    
+    p {
+      margin-bottom: 20px;
+      color: #444;
+    }
+    
+    /* Header section */
+    .header {
+      background: linear-gradient(135deg, #4169e1, #87cefa);
+      color: white;
+      padding: 30px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      text-align: center;
+      box-shadow: 0 4px 12px rgba(65, 105, 225, 0.2);
+    }
+    
+    .header h1 {
+      color: white;
+      margin-bottom: 10px;
+      font-size: 2.8rem;
+    }
+    
+    .header p {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.2rem;
+      margin-bottom: 0;
+    }
+    
+    /* Button styles */
+    button, .button {
+      background-color: #4169e1;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: background-color 0.3s;
+      margin-right: 10px;
+      margin-bottom: 10px;
+      display: inline-flex;
+      align-items: center;
+    }
+    
+    button:hover, .button:hover {
+      background-color: #3a5fcd;
+    }
+    
+    /* Upload section */
+    .upload-box {
+      background-color: white;
+      padding: 25px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(65, 105, 225, 0.1);
+    }
+    
+    .file-upload {
+      margin: 20px 0;
+    }
+    
+    .file-upload label {
+      display: inline-block;
+      background-color: #e6eef8;
+      color: #4169e1;
+      padding: 12px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: 500;
+      transition: background-color 0.3s;
+    }
+    
+    .file-upload label:hover {
+      background-color: #d1e1f2;
+    }
+    
+    .file-upload input[type="file"] {
+      display: none;
+    }
+    
+    /* Info section */
+    .info {
+      background-color: white;
+      padding: 25px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(65, 105, 225, 0.1);
+    }
+    
+    .info ul {
+      list-style-type: none;
+      padding-left: 10px;
+    }
+    
+    .info li {
+      margin: 12px 0;
+      padding-left: 15px;
+      position: relative;
+    }
+    
+    .info li::before {
+      content: "•";
+      color: #4169e1;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+    }
+    
+    .red {
+      color: #d32f2f;
+      font-weight: 600;
+    }
+    
+    .orange {
+      color: #f57c00;
+      font-weight: 600;
+    }
+    
+    .green {
+      color: #388e3c;
+      font-weight: 600;
+    }
+    
+    /* Chat box */
+    .chatbox {
+      display: flex;
+      gap: 10px;
+      margin-top: 20px;
+    }
+    
+    .chatbox input {
+      flex: 1;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    
+    .chatbox input:focus {
+      border-color: #4169e1;
+    }
+    
+    .chatbox button {
+      padding: 0 20px;
+      font-size: 1.2rem;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+      }
+      
+      .sidebar, .main {
+        width: 100%;
+      }
+      
+      .header {
+        padding: 20px;
+      }
+      
+      .header h1 {
+        font-size: 2.2rem;
+      }
+      
+      .upload-box, .info {
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <h2>About Oral AI</h2>
+      <p>
+        Oral AI analyzes oral cavity images to identify abnormalities and potential oral diseases, providing detailed analysis for dentists, oral surgeons, and healthcare providers.
+      </p>
+      <h3>Chat Controls</h3>
+      <button>➕ New Chat</button>
+      <button>☰ Clear All</button>
+    </aside>
+    
+    <main class="main">
+      <header class="header">
+        <h1>Oral AI</h1>
+        <p>Advanced Oral Health Analysis System</p>
+      </header>
+      
+      <section class="upload-box">
+        <h2>📤 Upload Oral Cavity Image</h2>
+        <div class="file-upload">
+          <label for="oral-upload">+ Click to Upload Oral Cavity Image</label>
+          <input type="file" id="oral-upload" accept="image/*">
+        </div>
+      </section>
+      
+      <section class="info">
+        <p>Upload an oral cavity image to get an AI-powered analysis of potential conditions.</p>
+        <ul>
+          <li><strong>Oral Lesions (HIGH RISK)</strong> – <span class="red">Detected</span></li>
+          <li><strong>Gingivitis (MODERATE RISK)</strong> – <span class="orange">Detected</span></li>
+          <li><strong>Normal (LOW RISK)</strong> – <span class="green">Not Detected</span></li>
+        </ul>
+      </section>
+      
+      <div class="chatbox">
+        <input type="text" placeholder="Ask a question about oral health...">
+        <button>&#10148;</button>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
